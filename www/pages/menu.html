@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" href="../lib/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- Font Awesome JS -->
+    <script defer src="../lib/solid.js"></script>
+    <script defer src="../lib/fontawesome.js"></script>
+</head>
+
+<body style="background-color: #F0F8FF;">
+    <div class="wrapper">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Barra de Navegação</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <p>Menu de Opções</p>
+                <li class="active">
+                    <a href="#idosoSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" style="font-family: Arial;">Idoso</a>
+                    <ul class="collapse list-unstyled" id="idosoSubmenu">
+                        <li>
+                            <a href="cadastraIdoso.html">Área de Cadastro</a>
+                        </li>
+                        <li>
+                            <a href="#">Lista de Idosos</a>
+                        </li>
+                    </ul>
+                    <a href="#medicamentoSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" style="font-family: Arial;">Medicamento</a>
+                    <ul class="collapse list-unstyled" id="medicamentoSubmenu">
+                        <li>
+                            <a href="cadastraMedicamento.html">Área de Cadastro</a>
+                        </li>
+                        <li>
+                            <a href="#">Lista de Medicamentos</a>
+                        </li>
+                    </ul>
+                    <a href="#casadeRepousoSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle" style="font-family: Arial;">Casa de Repouso</a>
+                    <ul class="collapse list-unstyled" id="casadeRepousoSubmenu">
+                        <li>
+                            <a href="cadastraCasaDeRepouso.html">Área de Cadastro</a>
+                        </li>
+                        <li>
+                            <a href="#">Lista de Casas de Repouso</a>
+                        </li>
+                    </ul>
+                </li>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                    </button>
+                </div>
+            </nav>
+            <h5 style="text-align: center;">Seja Bem-vindo!</h5>
+            <center><img src="../images/login.jpg" style="width: 80%; border-radius: 8px; border: 1px inset black;"></center><br>
+
+            <label for="nomeC" id="nomeC">Nome:</label><br>
+            <label for="idadeC" id="idadeC">Idade:</label><br>
+            <label for="rgC" id="rgC">RG:</label><br>
+            <label for="cnpjC" id="cnpjC">CNPJ:</label><br>
+            <label for="telefoneC" id="telefoneC">Telefone:</label><br>
+            <label for="emailC" id="emailC">Email:</label><br><br>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <button class="btn btn-primary btn-block" id="editarUsuario">Editar</button>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <button class="btn btn-danger btn-block" id="excluirUsuario">Excluir</button>
+        </div>
+      </div>
+    </div>
+  </div>      
+
+</div>
+
+    <script src="../lib/jquery-3.3.1.slim.min.js"></script>
+    <script src="../lib/popper.min.js"></script>
+    <script src="../lib/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
