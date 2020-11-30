@@ -1,42 +1,42 @@
 // This is a JavaScript file
 
-$(document).on("click","#entrou", function(){
-  $(location).attr("href","/pages/menu.html");
-});
-
-$(document).on("click","#sair", function(){
-  $(location).attr("href","index.html");
-});
-
-$(document).on("click","#cadastro", function(){
-  $(location).attr("href","/pages/form4.html");
-});
-
-// This is a JavaScript file
-
 //ações de mudança de tela
-$(document).on("click","#listar", function(){
-  $(location).attr("href","listar.html");
+
+$(document).on("click","#visualizarIdoso", function(){
+  $(location).attr("href","/pages/visualizarIdoso.html");
 });
 
 //ações do banco
-$(document).on("click","#salvar",function(){
+
+$(document).on("click","#cadastrarIdoso",function(){
     var parametros = {
       "nome":$("#nome").val(),
-      "email":$("#email").val(),
-      "senha":$("#senha").val()   
+      "idade":$("#idade").val(),
+      "rg":$("#rg").val(),
+      "cpf":$("#cpf").val(),
+      "altura":$("#altura").val(),
+      "peso":$("#peso").val(),
+      "telefone":$("#telefone").val(),
+      "endereco":$("#endereco").val(),   
+      "id_casa_de_repouso":$("#casa_de_repouso").val()   
     }
     $.ajax({
       type:"post", //como vai enviar os dados
-      url:"http://wordpress-online-2.000webhostapp.com/webservice/cadastra.php", //pra onde vai enviar os dados
+      url:"https://projeto-elderapp3min.000webhostapp.com/elderapp/admin/Idoso.php", //pra onde vai enviar os dados
       data:parametros,//o que será enviado
 
       //se funcionar
       success: function(data){
         navigator.notification.alert(data);
         $("#nome").val(""),
-        $("#email").val(""),
-        $("#senha").val("")  
+        $("#idade").val(""),
+        $("#rg").val(""),
+        $("#cpf").val(""),
+        $("#altura").val(""),
+        $("#peso").val(""),
+        $("#telefone").val(""),
+        $("#endereco").val(""),
+        $("#casa_de_repouso").val("")  
       },
 
       //se não funcionar
@@ -49,14 +49,14 @@ $(document).on("click","#salvar",function(){
 function listar(){
   $.ajax({
     type: "post",
-    url: "http://wordpress-online-2.000webhostapp.com/webservice/listar.php",
+    url: "https://projeto-elderapp3min.000webhostapp.com/elderapp/admin/Idoso.php",
     dataType:"json", //o que vai receber ou como vai receber
     success: function(data){
       var itemLista = "";
       $.each(data.pessoas, function(i,dados){
-        itemLista += "<option value="+dados.codigo+">"+dados.nome+"</option>";
+        itemLista += "<option value="+dados.id+">"+dados.nome+"</option>";
       });
-      $("#listaPessoas").html(itemLista);
+      $("#listaIdosos").html(itemLista);
     },
     error: function(data){
         navigator.notification.alert("Erro ao buscar registro");
@@ -64,9 +64,9 @@ function listar(){
   });
 }
 
-$(document).on("change","#listaPessoas",function(){
+$(document).on("change","#listaIdosos",function(){
   var parametros = {
-    "codigo": $("option:selected",("#listaPessoas")).val()
+    "codigo": $("option:selected",("#listaIdosos")).val()
   }
 
   $.ajax({
