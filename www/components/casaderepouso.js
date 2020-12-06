@@ -2,41 +2,33 @@
 
 //ações de mudança de tela
 
-$(document).on("click","#visualizarIdoso", function(){
-  $(location).attr("href","/pages/visualizarIdoso.html");
+$(document).on("click","#visualizarCasadeRepouso", function(){
+  $(location).attr("href","/pages/visualizarCasadeRepouso.html");
 });
 
 //ações do banco
 
-$(document).on("click","#cadastrarIdoso",function(){
+$(document).on("click","#cadastrarCasadeRepouso",function(){
     var parametros = {
       "nome":$("#nome").val(),
-      "idade":$("#idade").val(),
-      "rg":$("#rg").val(),
-      "cpf":$("#cpf").val(),
-      "altura":$("#altura").val(),
-      "peso":$("#peso").val(),
-      "endereco":$("#endereco").val(),   
       "telefone":$("#telefone").val(),
-      "id_casa_de_repouso":$("#casa_de_repouso").val()   
+      "endereco":$("#endereco").val(),
+      "qtd_idoso":$("#qtd_idoso").val(),
+      "qtd_funcionario":$("#qtd_funcionario").val()  
     }
     $.ajax({
       type:"post", //como vai enviar os dados
-      url:"https://projeto-elderapp3min.000webhostapp.com/elderapp/admin/Idoso.php", //pra onde vai enviar os dados
+      url:"https://projeto-elderapp3min.000webhostapp.com/elderapp/admin/CasadeRepouso.php", //pra onde vai enviar os dados
       data:parametros,//o que será enviado
 
       //se funcionar
       success: function(data){
-        navigator.notification.alert("Idoso Cadastrado!");
+        navigator.notification.alert("Casa de Repouso Cadastrado!");
         $("#nome").val(""),
-        $("#idade").val(""),
-        $("#rg").val(""),
-        $("#cpf").val(""),
-        $("#altura").val(""),
-        $("#peso").val(""),
-        $("#endereco").val(""),
         $("#telefone").val(""),
-        $("#casa_de_repouso").val("")  
+        $("#endereco").val(""),
+        $("#qtd_idoso").val(""),
+        $("#qtd_funcionario").val("") 
       },
 
       //se não funcionar
@@ -49,14 +41,14 @@ $(document).on("click","#cadastrarIdoso",function(){
 function listar(){
   $.ajax({
     type: "post",
-    url: "https://projeto-elderapp3min.000webhostapp.com/elderapp/admin/Idoso.php",
+      url:"https://projeto-elderapp3min.000webhostapp.com/elderapp/admin/CasadeRepouso.php",
     dataType:"json", //o que vai receber ou como vai receber
     success: function(data){
       var itemLista = "";
       $.each(data.pessoas, function(i,dados){
         itemLista += "<option value="+dados.id+">"+dados.nome+"</option>";
       });
-      $("#listaIdosos").html(itemLista);
+      $("#listaCasasdeRepouso").html(itemLista);
     },
     error: function(data){
         navigator.notification.alert("Erro ao buscar registro");
@@ -64,9 +56,9 @@ function listar(){
   });
 }
 
-$(document).on("change","#listaIdosos",function(){
+$(document).on("change","#listaCasasdeRepouso",function(){
   var parametros = {
-    "codigo": $("option:selected",("#listaIdosos")).val()
+    "codigo": $("option:selected",("#listaCasasdeRepouso")).val()
   }
 
   $.ajax({
